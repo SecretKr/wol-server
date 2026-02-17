@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+data/
+wol-server
+bin/
+*.md
+docker-compose.yml
+Dockerfile

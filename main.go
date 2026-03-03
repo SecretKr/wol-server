@@ -129,6 +129,6 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "magic packet sent", "mac": mac})
 	})
 
-	log.Println("Server starting on :8080...")
-	r.Run(":8080")
+	log.Println("Server starting on :8090...")
+	r.Run(":8090")
 }

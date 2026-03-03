@@ -4,8 +4,6 @@ services:
   app:
     build: .
     network_mode: host
-    ports:
-      - "8090:8080"
     volumes:
       - ./data:/app/data
     restart: unless-stopped

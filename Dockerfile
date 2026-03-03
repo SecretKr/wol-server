@@ -20,7 +20,7 @@ COPY --from=builder /app/static ./static
 
 RUN mkdir -p data
 
-EXPOSE 8080
+EXPOSE 8090
 VOLUME ["/app/data"]
 
 CMD ["./wol-server"]

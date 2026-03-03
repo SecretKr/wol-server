@@ -35,8 +35,8 @@ go build -o wol-server .
 ./wol-server
 ```
 
-The server will start on port `8080`.
-Open your browser and navigate to: [http://localhost:8080](http://localhost:8080)
+The server will start on port `8090`.
+Open your browser and navigate to: [http://localhost:8090](http://localhost:8090)
 
 ## Docker Usage
 
@@ -48,7 +48,7 @@ The easiest way to run the server is with Docker Compose:
 docker compose up -d
 ```
 
-This will start the server on port `8080` and persist data in the `data/` directory.
+This will start the server on port `8090` and persist data in the `data/` directory.
 
 ### Manual Build
 
@@ -62,7 +62,7 @@ Run the container:
 
 ```bash
 docker run -d \
-  -p 8080:8080 \
+  -p 8090:8090 \
   -v $(pwd)/data:/app/data \
   --name wol-server \
   wol-server

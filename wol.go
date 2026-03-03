@@ -18,7 +18,7 @@ func WakeDevice(macAddr string) error {
 	}
 	defer c.Close()
 
-	err = c.Wake("255.255.255.255:9", target)
+	err = c.Wake("10.0.1.255:9", target)
 	if err != nil {
 		return err
 	}

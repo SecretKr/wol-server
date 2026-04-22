@@ -1,4 +1,5 @@
-FROM golang:1.25-alpine AS builder
+# ---------- Build stage ----------
+FROM --platform=$BUILDPLATFORM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
@@ -7,20 +8,21 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o wol-server .
+ARG TARGETOS
+ARG TARGETARCH
 
-FROM alpine:latest
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH \
+    go build -ldflags="-s -w" -o wol-server .
+
+# ---------- Runtime stage ----------
+FROM gcr.io/distroless/base-debian12
 
 WORKDIR /app
-RUN apk --no-cache add ca-certificates
 
 COPY --from=builder /app/wol-server .
-
 COPY --from=builder /app/static ./static
 
-RUN mkdir -p data
-
-EXPOSE 8090
 VOLUME ["/app/data"]
+EXPOSE 8090
 
 CMD ["./wol-server"]
